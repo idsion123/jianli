@@ -117,18 +117,6 @@ nav ul li a.active{background:#F0ECE7;color:#2C2C2C}
   padding:6px 14px;border-radius:20px;
   opacity:0;animation:fadeIn .6s ease .8s forwards
 }
-/* 下载 PDF 按钮 */
-.hero-download{
-  position:absolute;top:80px;right:60px;
-  display:inline-flex;align-items:center;gap:6px;
-  padding:10px 20px;border-radius:8px;
-  background:#2C2826;color:#fff;font-size:14px;font-weight:500;
-  transition:all .25s ease;z-index:10;
-  opacity:0;animation:fadeIn .6s ease .5s forwards
-}
-.hero-download:hover{background:#5A4E44;transform:translateY(-1px)}
-.hero-download svg{width:16px;height:16px}
-
 @keyframes avatarIn{
   to{opacity:1;transform:scale(1)}
 }
@@ -185,6 +173,8 @@ section{padding:80px 0}
   background:#F0ECE7;color:#5A4E44;transition:all .2s ease;cursor:default
 }
 .skill-tags span:hover{background:#E0DAD3;transform:translateY(-1px)}
+.print-skills{display:none}
+.print-header{display:none}
 
 /* ===== Projects ===== */
 .projects{background:#FAF4EE}
@@ -297,6 +287,22 @@ section{padding:80px 0}
 }
 .edu-desc p .icon{flex-shrink:0}
 
+/* ===== Self Evaluation ===== */
+.self-eval{background:#FAF4EE}
+.eval-list{display:flex;flex-direction:column;gap:12px}
+.eval-item{
+  display:flex;align-items:center;gap:14px;
+  font-size:14px;color:#2C2C2C;line-height:1.7;
+  background:#fff;border:1px solid #F0ECE7;border-radius:10px;
+  padding:16px 20px;transition:all .25s ease
+}
+.eval-item:hover{box-shadow:0 4px 16px rgba(90,78,68,.05);transform:translateY(-1px)}
+.eval-num{
+  flex-shrink:0;width:28px;height:28px;border-radius:50%;
+  background:#5A4E44;color:#fff;font-size:13px;font-weight:600;
+  display:flex;align-items:center;justify-content:center
+}
+
 /* ===== Footer ===== */
 footer{
   text-align:center;padding:32px 24px;font-size:13px;color:#C4BAB0;background:#fff
@@ -320,7 +326,6 @@ footer{
   .hero-visual{order:-1}
   .hero-avatar-wrap{width:180px;height:180px;font-size:56px}
   .hero-avatar-badge{bottom:6px;right:0;font-size:11px;padding:5px 12px}
-  .hero-download{top:70px;right:24px;padding:8px 16px;font-size:13px}
   .hero-contact{justify-content:center}
   .project-card-main{grid-template-columns:1fr}
   .project-img{min-height:160px}
@@ -333,7 +338,6 @@ footer{
   .hero-headline{font-size:24px}
   .hero-avatar-wrap{width:140px;height:140px;font-size:44px}
   .hero-contact{gap:6px 14px;font-size:13px}
-  .hero-download{top:64px;right:16px}
   .project-mini-grid{grid-template-columns:1fr}
   .timeline{padding-left:24px}
   .timeline-dot{left:-24px;width:10px;height:10px}
@@ -350,88 +354,6 @@ footer{
   nav ul li a{padding:5px 8px;font-size:12px}
 }
 
-/* ===== Print / PDF ===== */
-@media print {
-  @page { size: A4 portrait; margin: 12mm 14mm }
-  html, body {
-    background: #fff !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  /* 隐藏网页全部内容 */
-  nav, .hero, .skills, .projects, .experience, .education,
-  footer, .hero-download, .scroll-indicator { display: none !important }
-
-  /* 只显示打印版简历 */
-  .print-resume { display: block !important }
-
-  .print-resume * { animation: none !important; transition: none !important }
-}
-
-/* 打印版简历样式（screen 下隐藏，print 下显示） */
-.print-resume {
-  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
-  color: #1a1a1a; line-height: 1.5; font-size: 10.5pt;
-  max-width: 100%; padding: 0;
-}
-.print-resume .pr-header {
-  border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; margin-bottom: 14px
-}
-.print-resume .pr-name-row {
-  display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px
-}
-.print-resume .pr-name {
-  font-size: 22pt; font-weight: 700; margin: 0; letter-spacing: 2px
-}
-.print-resume .pr-contact {
-  font-size: 9.5pt; color: #444; display: flex; flex-wrap: wrap; gap: 4px 16px
-}
-.print-resume .pr-contact a { color: #1a5276; text-decoration: underline }
-.print-resume .pr-tagline {
-  font-size: 11pt; color: #555; margin: 6px 0 0; font-weight: 400
-}
-.print-resume .pr-section { margin-bottom: 12px }
-.print-resume .pr-section-title {
-  font-size: 12pt; font-weight: 700; color: #1a1a1a;
-  border-bottom: 1px solid #ccc; padding-bottom: 3px; margin: 0 0 8px
-}
-.print-resume .pr-skills { display: flex; flex-direction: column; gap: 3px }
-.print-resume .pr-skill-row { font-size: 10pt; line-height: 1.5 }
-.print-resume .pr-skill-cat { font-weight: 600; color: #333 }
-.print-resume .pr-exp-header {
-  display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; margin-bottom: 4px
-}
-.print-resume .pr-company { font-size: 11pt; font-weight: 700 }
-.print-resume .pr-position { font-size: 10pt; color: #444 }
-.print-resume .pr-date { font-size: 9.5pt; color: #666; margin-left: auto }
-.print-resume .pr-exp-list {
-  margin: 4px 0 0; padding-left: 18px; list-style: disc
-}
-.print-resume .pr-exp-list li {
-  font-size: 10pt; line-height: 1.55; margin-bottom: 3px; color: #222
-}
-.print-resume .pr-exp-list li strong { color: #1a1a1a }
-.print-resume .pr-projects { display: flex; flex-direction: column; gap: 8px }
-.print-resume .pr-project { margin-bottom: 0 }
-.print-resume .pr-proj-title {
-  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap
-}
-.print-resume .pr-proj-name { font-size: 10.5pt; font-weight: 700 }
-.print-resume .pr-proj-link {
-  font-size: 9pt; color: #1a5276; text-decoration: underline;
-  word-break: break-all
-}
-.print-resume .pr-proj-desc {
-  font-size: 9.5pt; color: #333; line-height: 1.5; margin: 2px 0 0
-}
-.print-resume .pr-edu {
-  display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; margin-bottom: 4px
-}
-.print-resume .pr-edu-school { font-size: 11pt; font-weight: 700 }
-.print-resume .pr-edu-major { font-size: 10pt; color: #444 }
-.print-resume .pr-edu-date { font-size: 9.5pt; color: #666; margin-left: auto }
-.print-resume .pr-edu-desc { font-size: 9.5pt; color: #444; margin: 0; line-height: 1.5 }
 </style>
 </head>
 <body>
@@ -446,18 +368,24 @@ footer{
       <li><a href="#projects">作品</a></li>
       <li><a href="#experience">经历</a></li>
       <li><a href="#education">教育</a></li>
+      <li><a href="#self-eval">自我评价</a></li>
     </ul>
   </div>
 </nav>
 
 <!-- ===== Hero ===== -->
 <section class="hero" id="hero">
-  <!-- 下载 PDF 按钮 -->
-  <a href="javascript:void(0)" class="hero-download" onclick="window.print()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-    下载 PDF
-  </a>
-
+  <!-- 打印版简历头部（参考 简历.md） -->
+  <div class="print-header">
+    <div class="print-header-info">
+      <h1>袁子炎</h1>
+      <p class="print-contact-line"><strong>电话</strong>：18731007762 | <strong>邮箱</strong>：1904258580@qq.com</p>
+      <p class="print-job-line"><strong>求职意向</strong>：Python后端开发 / AI应用开发</p>
+    </div>
+    <div class="print-header-avatar">
+      <img src="images/头像/yuan.png" alt="袁子炎">
+    </div>
+  </div>
   <div class="hero-inner">
     <!-- 左侧文案 -->
     <div class="hero-text">
@@ -476,6 +404,14 @@ footer{
         <a href="tel:18731007762">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           187-3100-7762
+        </a>
+        <a href="https://github.com/idsion123" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a href="https://beiyuanzhiyi.site/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          个人网站
         </a>
       </div>
     </div>
@@ -608,6 +544,17 @@ footer{
           </div>
         </div>
       </div>
+
+      <!-- 打印版技能：参考 参考简历/简历.md 段落格式 -->
+      <div class="print-skills">
+        <ul>
+          <li><strong>后端开发：</strong>精通 Python，深入理解 Django 框架及 FastAPI 异步开发，掌握 Drizzle ORM，具备微服务架构设计与 RESTful API 开发经验。</li>
+          <li><strong>AI 工程化：</strong>具备 AI 应用落地经验，掌握 LangChain，简单了解 Coze/Dify 平台构建智能体及工作流；掌握 Numpy/Pandas 数据分析工具。</li>
+          <li><strong>数据库与缓存：</strong>熟练使用 PostgreSQL/MySQL，掌握 Elasticsearch 倒排索引优化与查询调优。</li>
+          <li><strong>工程化能力：</strong>精通 Docker 容器化部署、CI/CD 自动化流水线（Vercel/Supabase），具备使用 Pytest 进行 API 自动化测试经验。</li>
+          <li><strong>全栈视野：</strong>熟悉 HTML/CSS/JavaScript 前端基础知识，了解 Vue 3/Next.js 等前沿框架；擅长利用 Claude Code 等 AI 工具辅助编程，提升研发效率。</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -726,101 +673,199 @@ footer{
   </div>
 </section>
 
-
-<!-- ===== Print Resume (A4 Single Page) ===== -->
-<div class="print-resume">
-  <!-- 页眉 -->
-  <div class="pr-header">
-    <div class="pr-name-row">
-      <h1 class="pr-name">袁子炎</h1>
-      <div class="pr-contact">
-        <span>📍 北京</span>
-        <span>📞 187-3100-7762</span>
-        <a href="mailto:1904258580@qq.com">✉ 1904258580@qq.com</a>
-        <a href="https://github.com/idsion123" target="_blank">GitHub: idsion123</a>
-      </div>
-    </div>
-    <p class="pr-tagline">Python 后端开发工程师 · AI 应用开发者 · 3 年电商后端经验</p>
-  </div>
-
-  <!-- 核心技能 -->
-  <div class="pr-section">
-    <h2 class="pr-section-title">核心技能</h2>
-    <div class="pr-skills">
-      <div class="pr-skill-row">
-        <span class="pr-skill-cat">后端开发（中级）：</span>
-        <span>Python、Django/DRF、FastAPI、Drizzle ORM、微服务架构、RESTful API</span>
-      </div>
-      <div class="pr-skill-row">
-        <span class="pr-skill-cat">数据库：</span>
-        <span>PostgreSQL、MySQL、Elasticsearch（倒排索引优化与查询调优）</span>
-      </div>
-      <div class="pr-skill-row">
-        <span class="pr-skill-cat">工程化：</span>
-        <span>Docker、CI/CD（Vercel/Supabase）、Pytest 自动化测试</span>
-      </div>
-      <div class="pr-skill-row">
-        <span class="pr-skill-cat">全栈 / AI：</span>
-        <span>Vue 3、Next.js、LangChain、Numpy/Pandas</span>
-      </div>
+<!-- ===== Self Evaluation ===== -->
+<section class="self-eval" id="self-eval">
+  <div class="section-inner fade-section">
+    <h2 class="section-title">📝 自我评价</h2>
+    <div class="section-divider"></div>
+    <div class="eval-list">
+      <div class="eval-item"><span class="eval-num">1</span>热爱新技术，愿意学习新技术</div>
+      <div class="eval-item"><span class="eval-num">2</span>喜欢团队合作，沟通能力良好</div>
+      <div class="eval-item"><span class="eval-num">3</span>责任心强，有团队精神，抗压能力较好</div>
+      <div class="eval-item"><span class="eval-num">4</span>稳定性强，愿意在行业深度发展</div>
     </div>
   </div>
+</section>
 
-  <!-- 工作经历 -->
-  <div class="pr-section">
-    <h2 class="pr-section-title">工作经历</h2>
-    <div class="pr-exp-header">
-      <span class="pr-company">北京华美汉盛信息技术有限公司</span>
-      <span class="pr-position">Python 开发工程师</span>
-      <span class="pr-date">2022.07 – 2026.01</span>
-    </div>
-    <ul class="pr-exp-list">
-      <li><strong>高性能搜索优化</strong>：主导列表页后端重构，引入 Elasticsearch 构建高性能倒排索引，复杂查询响应速度提升至毫秒级，支撑国际电商平台流量增长</li>
-      <li><strong>数据采集与支撑</strong>：基于 JavaScript 实现全链路业务数据埋点，精准捕获购物行为日志，为销售团队提供多维度业务分析看板</li>
-      <li><strong>代码质量治理</strong>：实施 API 自动化单元测试（Pytest），通过全面用例覆盖提升核心接口容错性，显著降低线上故障率</li>
-      <li><strong>模块化重构</strong>：针对老旧页面进行 JS 代码重构，以高内聚类模块结构替换分散函数逻辑，代码可维护性与复用率大幅提升</li>
-    </ul>
-  </div>
 
-  <!-- 作品和项目 -->
-  <div class="pr-section">
-    <h2 class="pr-section-title">作品和项目</h2>
-    <div class="pr-projects">
-      <div class="pr-project">
-        <div class="pr-proj-title">
-          <span class="pr-proj-name">Brilliantearth 境外珠宝电商</span>
-          <a href="https://www.brilliantearth.com/" class="pr-proj-link">brilliantearth.com</a>
-        </div>
-        <p class="pr-proj-desc">基于 Django 的大型珠宝电商网站，主导列表页后端重构并引入 Elasticsearch，复杂查询响应提升至毫秒级，助力甲方公司成功上市。技术栈：DRF + PostgreSQL + Elasticsearch + Redis + Celery + RabbitMQ</p>
-      </div>
-      <div class="pr-project">
-        <div class="pr-proj-title">
-          <span class="pr-proj-name">服装电商平台（全栈 &amp; AI 集成）</span>
-          <a href="https://beiyuanzhiyi.site/" class="pr-proj-link">beiyuanzhiyi.site</a>
-        </div>
-        <p class="pr-proj-desc">全栈电商项目，实现 JWT 无感认证与多角色权限控制，主导商品多维度筛选和购物车实时价格计算，配置 CI/CD 流水线实现零停机发布。技术栈：Next.js + FastAPI + Drizzle ORM + PostgreSQL</p>
-      </div>
-      <div class="pr-project">
-        <div class="pr-proj-title">
-          <span class="pr-proj-name">数据采集与分析系统</span>
-        </div>
-        <p class="pr-proj-desc">基于 JavaScript 实现全链路业务数据埋点，精准捕获购物行为日志，为销售团队提供多维度业务分析看板，支撑数据驱动决策。</p>
-      </div>
-    </div>
-  </div>
+<style>
+/* ===== Print / PDF ===== */
+@media print {
+  @page { size: A4; margin: 12mm 14mm }
+  html, body {
+    background:#fff !important;color:#000 !important;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    font-size:9.5pt !important;line-height:1.45 !important
+  }
+  * { animation:none !important;transition:none !important;box-shadow:none !important }
 
-  <!-- 教育经历 -->
-  <div class="pr-section">
-    <h2 class="pr-section-title">教育经历</h2>
-    <div class="pr-edu">
-      <span class="pr-edu-school">河北大学</span>
-      <span class="pr-edu-major">信息安全 · 本科</span>
-      <span class="pr-edu-date">2017 – 2021</span>
-    </div>
-    <p class="pr-edu-desc">主修课程：网络安全、计算机网络、数据库原理、WEB 安全。在校期间自学 Python，开发过爬虫、Pygame 游戏和网站。</p>
-  </div>
-</div>
+  /* Hide web-only elements */
+  nav,#navbar,
+  .hero-visual,.hero-avatar-wrap,.hero-avatar-badge,
+  .hero-greeting,.hero-cta,
+  .section-divider,
+  .skill-bar,.skill-badge,.skill-card-header,
+  .project-img,.project-tech,.project-card-main .project-link svg,
+  .timeline-dot,.timeline::before,
+  .edu-desc p .icon,
+  footer
+  { display:none !important }
 
+  /* Unhide content wrappers */
+  .fade-section { opacity:1 !important;transform:none !important }
+
+  /* General cleanup */
+  body { padding:0 !important;margin:0 !important }
+  section {
+    padding:0 !important;margin:0 0 5mm !important;
+    background:none !important;min-height:0 !important
+  }
+  .section-inner { padding:0 !important;max-width:100% !important }
+  .section-title { font-size:11pt !important;margin-bottom:2mm !important }
+
+  /* === Hero（参考 简历.md 布局）=== */
+  .hero { padding:0 !important;min-height:0 !important;margin-bottom:4mm !important }
+  .hero-inner { display:none !important }
+  .hero-greeting,.hero-headline,.hero-subtitle,.hero-contact,
+  .hero-visual,.hero-cta
+  { display:none !important }
+  .print-header {
+    display:flex !important;justify-content:space-between !important;
+    align-items:flex-start !important;margin-bottom:3mm !important
+  }
+  .print-header-info { flex:1 !important;min-width:0 !important }
+  .print-header-info h1 {
+    font-size:20pt !important;font-weight:700 !important;color:#000 !important;
+    margin:0 0 2mm !important;letter-spacing:.05em !important
+  }
+  .print-contact-line {
+    font-size:9pt !important;color:#333 !important;margin:0 0 1mm !important;
+    line-height:1.5 !important
+  }
+  .print-contact-line strong { font-weight:600 !important;color:#1A1A1A !important }
+  .print-job-line {
+    font-size:9pt !important;color:#333 !important;margin:0 !important;
+    line-height:1.5 !important
+  }
+  .print-job-line strong { font-weight:600 !important;color:#1A1A1A !important }
+  .print-header-avatar {
+    flex-shrink:0 !important;width:25mm !important;height:30mm !important;
+    margin-left:8mm !important;overflow:hidden !important;
+    border-radius:3mm !important
+  }
+  .print-header-avatar img {
+    width:100% !important;height:100% !important;object-fit:cover !important;
+    object-position:center top !important
+  }
+
+  /* === Skills（参考 参考简历/简历.md 段落格式）=== */
+  .skills-grid { display:none !important }
+  .skill-card { display:none !important }
+  .print-skills { display:block !important;margin:0 !important }
+  .print-skills ul { list-style:none !important;padding:0 !important;margin:0 !important }
+  .print-skills ul li {
+    font-size:8.5pt !important;color:#2C2C2C !important;
+    line-height:1.55 !important;margin-bottom:0.8mm !important;
+    padding-left:0 !important
+  }
+  .print-skills ul li strong { font-weight:600 !important;color:#1A1A1A !important }
+  .print-skills ul li::before { display:none !important }
+  .print-skills ul li::marker { display:none !important }
+
+  /* === Projects（参考 参考简历/简历.md 格式）=== */
+  .projects .section-inner > .project-card { margin:0 0 3mm !important }
+  .project-card {
+    border:none !important;border-radius:0 !important;
+    box-shadow:none !important;margin:0 !important
+  }
+  .project-card-main { grid-template-columns:1fr !important;display:block !important }
+  .project-body { padding:0 !important }
+  .project-body h3 { display:inline !important;font-size:10pt !important;margin-bottom:0.5mm !important;
+    font-weight:600 !important }
+  .project-body h3::after { content:' | ' }
+  .project-body .role { display:inline !important;font-size:8.5pt !important;
+    margin-bottom:1mm !important;color:#555 !important }
+  .project-body ul { margin:0.5mm 0 1mm !important }
+  .project-body ul li { font-size:8pt !important;line-height:1.4 !important;padding-left:3mm !important;margin-bottom:0.3mm !important }
+  .project-body ul li::before { display:none !important }
+  .project-body ul li::marker { content:'•';font-size:8pt }
+  .project-link { font-size:8pt !important;color:#1a5276 !important }
+  .project-link svg { display:none !important }
+
+  /* === Experience（参考 参考简历/简历.md 格式）=== */
+  .experience .section-inner > .timeline { padding-left:0 !important;margin:0 !important }
+  .timeline-item { padding-bottom:3mm !important }
+  .timeline-date { display:inline !important;font-size:8.5pt !important;color:#555 !important;
+    margin-bottom:0.5mm !important }
+  .timeline-card {
+    border:none !important;padding:0 !important;border-radius:0 !important
+  }
+  .timeline-card h3 { display:inline !important;font-size:10pt !important;margin-bottom:0.3mm !important;
+    font-weight:600 !important }
+  .timeline-card h3::after { content:' | ' }
+  .timeline-card .role { display:inline !important;font-size:8.5pt !important;color:#555 !important;
+    margin-bottom:1mm !important }
+  .timeline-card .role::after { content:' | ' }
+  .timeline-card ul { margin-top:0.5mm !important }
+  .timeline-card ul li { font-size:8pt !important;line-height:1.4 !important;padding-left:3mm !important;margin-bottom:0.3mm !important }
+  .timeline-card ul li::before { display:none !important }
+  .timeline-card ul li::marker { content:'•';font-size:8pt }
+  .timeline-card ul li strong { font-weight:600 !important }
+
+  /* === Education（参考 参考简历/简历.md 格式）=== */
+  .edu-card {
+    border:none !important;padding:0 !important;border-radius:0 !important
+  }
+  .edu-header { display:block !important;margin-bottom:1mm !important }
+  .edu-header h3 { display:inline !important;font-size:10pt !important;font-weight:600 !important;
+    margin-bottom:0.5mm !important }
+  .edu-header h3::after { content:' | ' }
+  .edu-header .meta { display:inline !important;font-size:8.5pt !important;color:#555 !important }
+  .edu-header .meta span::after { content:' | ' }
+  .edu-header .meta span:last-child::after { content:'' }
+  .edu-header .year { display:inline !important;font-size:8.5pt !important;color:#555 !important;
+    margin-left:0 !important }
+  .edu-tags { display:flex !important;flex-wrap:wrap !important;gap:2mm !important;
+    margin-bottom:1.5mm !important }
+  .edu-tags span {
+    padding:0 !important;border-radius:0 !important;
+    font-size:8pt !important;background:none !important;color:#444 !important
+  }
+  .edu-tags::before { content:'主修课程：';font-size:8pt !important;font-weight:600 !important;
+    color:#1A1A1A !important }
+  .edu-desc p { font-size:8pt !important;color:#444 !important;gap:0 !important;
+    margin-bottom:0.5mm !important;display:block !important }
+  .edu-desc p .icon { display:none !important }
+  .edu-desc p:first-child::before { content:'校园经历：';font-weight:600 !important;
+    color:#1A1A1A !important }
+  .edu-desc p:last-child::before { content:'技术积累：';font-weight:600 !important;
+    color:#1A1A1A !important }
+
+  /* === Self Evaluation === */
+  .self-eval .section-divider { display:none !important }
+  .self-eval .section-title { margin-bottom:2mm !important }
+  .eval-list { gap:0.5mm !important }
+  .eval-item {
+    font-size:8.5pt !important;color:#2C2C2C !important;
+    line-height:1.5 !important;padding:0 !important;
+    border:none !important;border-radius:0 !important;
+    background:none !important;gap:2mm !important
+  }
+  .eval-num {
+    width:12px !important;height:12px !important;
+    font-size:7pt !important;background:#5A4E44 !important;
+    color:#fff !important
+  }
+
+  /* Links with URLs */
+  a[href^="http"]::after,
+  a.project-link::after {
+    content:" (" attr(href) ")";font-size:7.5pt;color:#666;
+    word-break:break-all
+  }
+  a { color:#1a5276 !important;text-decoration:underline !important }
+}
+</style>
 <script>
 // === Navbar hide/show on scroll ===
 let lastScroll = 0;
